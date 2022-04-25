@@ -76,5 +76,26 @@ namespace praktikum11apr
             lblmanager2.Text = ManagerandCaptain2.Rows[0]["Nama Manager"].ToString();
             lblcaptain2.Text = ManagerandCaptain2.Rows[0]["Nama Captain"].ToString();
         }
+
+        private void lblstadium_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DataTable tgldanskor = new DataTable();
+            sqlQuery = "select date_format(match_date, '%e %M %Y') as `Tanggal`, concat(goal_home, '-', goal_away) as Skor from match where team_home = '" + cmbbox.SelectedValue.ToString() + "' and team_away = '" + cmbbox2.SelectedValue.ToString() + "'";
+            sqlCommand = new MySqlCommand(sqlQuery, sqlConnect);
+            sqlAdapter = new MySqlDataAdapter(sqlCommand);
+            sqlAdapter.Fill(tgldanskor);
+            lbltanggal.Text = tgldanskor.Rows[0]["Tanggal"].ToString();
+            lblskor.Text = tgldanskor.Rows[0]["Skor"].ToString();
+        }
+
+        private void lbltanggal_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
